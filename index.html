@@ -1,92 +1,289 @@
-        <!doctype html>
-        <html lang="es">
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Nerdflix</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-            <!--MIS ESTILOS DEL LANDING PAGE DE NERDFLIX-->
-            <style>
-                body{
-                    background-color: black;
-                }
+            <!doctype html>
+            <html lang="es">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>Nerdflix</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+                <!--MIS ESTILOS DEL LANDING PAGE DE NERDFLIX-->
+                <style>
+                    body{
+                        background-color: black;
+                    }
 
-                .menu{
-                    height: 150px;
-                    background-color: rgb(0, 0, 0);
-                }
-                .menu img{
-                    height: 60px;
-                }
+                    .menu{
+                        height: 150px;
+                        background-color: rgb(0, 0, 0);
+                    }
+                    .menu img{
+                        height: 90px;
+                                    }
 
-                .hero{
-                    height: 500px;
-                    background-color: rgb(0, 0, 0);
-                    background-image: url(images/imagen\ fondo.jpeg);
-                    background-size: 100%;
-                    background-repeat: no-repeat;
-                }
+                    .hero{
+                        min-height: 500px;
+                        height: auto;
+                        background-color: rgb(0, 0, 0);
+                        background-image: url(images/fondo.png);
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                    }
 
-                .card{
-                    height: 500px;
-                    background-color: rgb(255, 255, 255);
-                }
+                    .hero h1{
+                        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+                        font-size: 50px;
+                    }
 
-                .footer{
-                    height: 300px;
-                    background-color: rgb(174, 43, 226);
-                }
-            </style>
+                    .hero h2{
+                        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+                        font-size: 22px;
+                    }
+
+                    .hero h3{
+                        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+                        font-size: 15px;
+                    }
+
+                    .hero::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -80px;
+                    left: 0%;
+                    width: 100%;
+                    height: 160px;
+                    background-color: rgb(1,3,12); /* ← cambia rgb(1, 3, 12) por negro puro */
+                    border-radius: 50%;
+                    z-index: 10;
+                    display: none;
+                    }
+
+                    .arc-line {
+                    position: absolute;
+                    bottom: 78px;
+                    width: 100%;
+                    left: 0;
+                    height: 3px;
+                    background: linear-gradient(90deg, transparent 2%, #e50914 25%, #ff4444 50%, #e50914 75%, transparent 98%);
+                    border-radius: 50%;
+                    z-index: 11;
+                    }
+                                    
+                    .card{
+                        height: auto;
+                        min-height: 1000px;
+                        background-color: rgb(1, 3, 12);
+                    }
+                    /* --- TENDENCIAS --- */
+                        .tendencias {
+                        padding: 20px 0;
+                        color: white;
+                        }
+
+                        .card h2 {
+                        margin-left: 15px;
+                        margin-top: 60px;
+                        margin-bottom: 15px;
+                        color: white;
+                    
+                        }
+
+                        .carrusel-wrapper {
+                        position: relative;
+                        overflow: hidden;       /* esconde las cards que salen */
+                        }
+
+                        .carrusel {
+                        display: flex;    
+                        justify-content: center;      /* pone las cards en fila */
+                        transition: transform 0.4s ease;
+                        padding-left: 15px;
+                        }
+
+                        /* --- CADA CARD --- */
+                        .card-pelicula {
+                        position: relative;
+                        flex: 0 0 160px;        /* ancho fijo, no se encoge */
+                        height: 300px;
+                        cursor: pointer;
+                        margin-right: 4px;
+                        justify-content: center;
+                        }
+
+                        .card-pelicula img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 6px;
+                        }
+
+                        /* el número grande */
+                        .numero {
+                        position: absolute;
+                        bottom: -15px;
+                        left: -8px;
+                        font-size: 90px;
+                        font-weight: 900;
+                        color: #111;
+                        -webkit-text-stroke: 2px #666;
+                        z-index: 2;
+                        }
+
+                        /* botón > para pasar */
+                        .btn-siguiente {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 50px;
+                        background: rgba(0,0,0,0.5);
+                        color: white;
+                        border: none;
+                        font-size: 30px;
+                        cursor: pointer;
+                        }
+
+                    .footer{
+                        height: 300px;
+                        background-color: rgb(174, 43, 226);
+                    }
+                </style>
 
 
-        </head>
-        <body>
+            </head>
+            <body>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 menu">
+                            <!--MI MENU DE BOOTSTRAP-->
+                            <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 menu">
-                        <!--MI MENU DE BOOTSTRAP-->
-                        <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="images/logo.png" alt="Logo de Nerdflix">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;">
-                    <svg viewBox="0 0 16 16" width="16" height="16" data-icon="LanguagesSmall" data-icon-id=":R8pbaml6lalalalb96:" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" role="img"><path fill="currentColor" fill-rule="evenodd" d="M10.77 5.33 10.5 6 9.34 8.94l-.57 1.44L7.33 14h1.78l.73-1.97h3.58l.74 1.97H16l-3.43-8.67zm-.15 4.6-.24.63h2.51l-1.26-3.35zm-1.1-5.09.1-.19h-3.2V2h-1.5v2.65H.55V6h3.77A11 11 0 0 1 0 10.43c.33.28.81.8 1.05 1.16 1.5-.91 2.85-2.36 3.88-4.02v5.1h1.49V7.52q.6.95 1.33 1.8l.57-1.43a12 12 0 0 1-1.34-1.9h2.09z" clip-rule="evenodd"></path></svg>
-                    Español
+                <a class="navbar-brand" href="#">
+                    <img src="images/logo mejorado.png" alt="Logo de Nerdflix">
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Español</a></li>
-                    <li><a class="dropdown-item" href="#">English</a></li>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;">
+                        <svg viewBox="0 0 16 16" width="16" height="16" data-icon="LanguagesSmall" data-icon-id=":R8pbaml6lalalalb96:" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" role="img"><path fill="currentColor" fill-rule="evenodd" d="M10.77 5.33 10.5 6 9.34 8.94l-.57 1.44L7.33 14h1.78l.73-1.97h3.58l.74 1.97H16l-3.43-8.67zm-.15 4.6-.24.63h2.51l-1.26-3.35zm-1.1-5.09.1-.19h-3.2V2h-1.5v2.65H.55V6h3.77A11 11 0 0 1 0 10.43c.33.28.81.8 1.05 1.16 1.5-.91 2.85-2.36 3.88-4.02v5.1h1.49V7.52q.6.95 1.33 1.8l.57-1.43a12 12 0 0 1-1.34-1.9h2.09z" clip-rule="evenodd"></path></svg>
+                        Español
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Español</a></li>
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active btn btn-danger text white" aria-current="page" href="#">Iniciar sesión</a>
+                    </li>
                 </ul>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link active btn btn-danger text white" aria-current="page" href="#">Iniciar sesión</a>
-                </li>
-            </ul>
-            </div>
-        </div>
-        </nav>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 hero">
-                        <div class="row">
-                            <div class="col-4"></div>
-                            <div class="col-4" style="margin-top: 200px"> 
-                                <h1 class="text-center text-white"> NERDFLIX A TAN SOLO 100 PESOS</h1>
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-                  
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 card"></div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 footer"></div>
                 </div>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-        </body>
-        </html>
+            </nav>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 hero">
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-4" style="margin-top: 100px"> 
+                                    <h1 class="text-center text-white font-family"> Películas y series ilimitadas y mucho más</h1>
+                                    <br>
+                                    <h2 class="text-center text-white font-family"> A partir de $ 18.900. Cancela cuando quieras.</h2>
+                                    <br>
+                                    <h3 class="text-center text-white font-family"> ¿Quieres ver Nerdflix ya? Ingresa tu email para crear una cuenta o reiniciar tu membresía de Nerdflix.</h3>
+                                    <nav class="navbar">
+                                    <div class="container-fluid" style="justify-content:center;">
+                                        <form class="d-flex" role="search">
+                                        <input class="form-control me-2" type="search" placeholder="Email" aria-label="Search"/>
+                                        <button class="btn btn-outline-success bg-danger text-white border-danger" type="submit">Comenzar</button>
+                                        </form>
+                                    </div>
+                                    </nav>
+                                </div>
+                                <div class="arc-line"></div>
+                                <div class="col-4"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 card">
+                            <h2>Tendencias</h2>
+
+                        <div class="carrusel-wrapper">
+                            <div id="carruselTendencias" class="carousel slide" data-bs-ride="false">
+                                <div class="carousel-inner">
+
+                                    <!-- PÁGINA 1 -->
+                                    <div class="carousel-item active">
+                                        <div class="d-flex justify-content-center gap-3 py-4">
+                                            <div class="card-pelicula">
+                                                <span class="numero">1</span>
+                                                <img src="images/onepiece.png" alt="One Piece">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">2</span>
+                                                <img src="images/james.jpg" alt="James">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">3</span>
+                                                <img src="images/intercambiados.jpg" alt="Intercambiados">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">4</span>
+                                                <img src="images/Apex.jpg" alt="Apex">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">5</span>
+                                                <img src="images/Berlin y la Dama de Armiño.jpg" alt="Berlin y la Dama de Armiño">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- PÁGINA 2 -->
+                                    <div class="carousel-item">
+                                        <div class="d-flex justify-content-center gap-3 py-4">
+                                            <div class="card-pelicula">
+                                                <span class="numero">6</span>
+                                                <img src="images/Peril Falso.jpg" alt="Peril Falso">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">7</span>
+                                                <img src="images/Criaturas Luminosas.jpg" alt="Criaturas Luminosas">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">8</span>
+                                                <img src="images/Damas Primero.jpg" alt="Damas Primero">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">9</span>
+                                                <img src="images/Especialista La Resurreccion.jpg" alt="Especialista La Resurreccion">
+                                            </div>
+                                            <div class="card-pelicula">
+                                                <span class="numero">10</span>
+                                                <img src="images/Embestida.jpg" alt="Embestida">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Botón › para pasar -->
+                                <button class="btn-siguiente-custom" type="button" data-bs-target="#carruselTendencias" data-bs-slide="next">›</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Disfruta en tu TV</h5>
+                        <p class="card-text">Ve en smart TV, PlayStation, Xbox, Chromecast, Apple TV, reproductores de Blu-ray y más..</p>
+                    </div>
+                    
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 footer"></div>
+                    </div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+            </body>
+            </html>
